@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sign In</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div th:replace="~{header :: header}">Header</div>
+
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="class, iStat: *{classes}">
+      <th scope="row" th:text="${iStat.index}"></th>
+      <td th:text="*{classes[__${iStat.index}__].name}"></td>
+      <td th:text="*{classes[__${iStat.index}__].description}"></td>
+      <td><a href="'getCode/' + ${class.key}" th:href="@{'/createcode/' + *{classes[__${iStat.index}__].id}}">Get code</a></td>
+    </tr>
+    
+  </tbody>
+</table>
+</body>
+</html>
